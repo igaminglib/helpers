@@ -20,17 +20,21 @@ class MoneyFormatter
      * @return string Formatted value
      * 
      * @example
-     * $formatted = MoneyFormatter::format(1234.56);
-     * // Returns: "R$ 1.234,56" (Brazilian format)
+     * $formatted = MoneyFormatter::format(1234.56, 2, 'pt_BR');
+     * // Returns: "R$ 1.234,56"
      */
     public static function format(float $amount, int $decimals = 2, string $locale = 'pt_BR'): string
     {
-        if ($locale === 'pt_BR') {
-            return self::formatBrazilian($amount, $decimals);
-        }
-
-        // Fallback to international format
-        return number_format($amount, $decimals, '.', ',');
+        return match($locale) {
+            'pt_BR' => self::formatBrazilian($amount, $decimals),
+            'en_US', 'USD' => self::formatDollar($amount, $decimals),
+            'en_GB', 'GBP' => self::formatPound($amount, $decimals),
+            'de_DE', 'EUR', 'fr_FR', 'es_ES', 'it_IT' => self::formatEuro($amount, $decimals),
+            'en_IN', 'INR' => self::formatRupee($amount, $decimals),
+            'zh_CN', 'CNY' => self::formatYuan($amount, $decimals),
+            'ko_KR', 'KRW' => self::formatWon($amount, $decimals),
+            default => self::formatInternational($amount, $decimals),
+        };
     }
 
     /**
@@ -42,7 +46,58 @@ class MoneyFormatter
     }
 
     /**
+     * Formats in US Dollar standard ($1,234.56)
+     */
+    public static function formatDollar(float $amount, int $decimals = 2): string
+    {
+        return '$' . number_format($amount, $decimals, '.', ',');
+    }
+
+    /**
+     * Formats in British Pound standard (£1,234.56)
+     */
+    public static function formatPound(float $amount, int $decimals = 2): string
+    {
+        return '£' . number_format($amount, $decimals, '.', ',');
+    }
+
+    /**
+     * Formats in Euro standard (€1.234,56)
+     */
+    public static function formatEuro(float $amount, int $decimals = 2): string
+    {
+        return '€' . number_format($amount, $decimals, ',', '.');
+    }
+
+    /**
+     * Formats in Indian Rupee standard (₹1,234.56)
+     */
+    public static function formatRupee(float $amount, int $decimals = 2): string
+    {
+        return '₹' . number_format($amount, $decimals, '.', ',');
+    }
+
+    /**
+     * Formats in Chinese Yuan standard (¥1,234.56)
+     */
+    public static function formatYuan(float $amount, int $decimals = 2): string
+    {
+        return '¥' . number_format($amount, $decimals, '.', ',');
+    }
+
+    /**
+     * Formats in South Korean Won standard (₩1,234)
+     * Note: Won typically doesn't use decimals
+     */
+    public static function formatWon(float $amount, int $decimals = 0): string
+    {
+        return '₩' . number_format($amount, $decimals, '.', ',');
+    }
+
+    /**
      * Formats in international standard ($1,234.56)
+     * 
+     * @param string $symbol Currency symbol (default: $)
      */
     public static function formatInternational(float $amount, int $decimals = 2, string $symbol = '$'): string
     {
@@ -54,11 +109,10 @@ class MoneyFormatter
      */
     public static function formatNumber(float $amount, int $decimals = 2, string $locale = 'pt_BR'): string
     {
-        if ($locale === 'pt_BR') {
-            return number_format($amount, $decimals, ',', '.');
-        }
-
-        return number_format($amount, $decimals, '.', ',');
+        return match($locale) {
+            'pt_BR', 'de_DE', 'EUR', 'fr_FR', 'es_ES', 'it_IT' => number_format($amount, $decimals, ',', '.'),
+            default => number_format($amount, $decimals, '.', ','),
+        };
     }
 
     /**

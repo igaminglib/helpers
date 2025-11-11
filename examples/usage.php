@@ -129,9 +129,21 @@ echo "Probabilities: " . implode('%, ', $probabilities) . "%\n\n";
 echo "6. Utils\n";
 echo str_repeat("-", 40) . "\n";
 
-// Format money
-$formatted = MoneyFormatter::format(1234.56);
-echo "Money formatting: " . $formatted . "\n";
+// Format money - Brazilian Real
+$formatted = MoneyFormatter::format(1234.56, 2, 'pt_BR');
+echo "Money formatting (BRL): " . $formatted . "\n";
+
+// Format money - US Dollar
+$formatted = MoneyFormatter::formatDollar(1234.56);
+echo "Money formatting (USD): " . $formatted . "\n";
+
+// Format money - Euro
+$formatted = MoneyFormatter::formatEuro(1234.56);
+echo "Money formatting (EUR): " . $formatted . "\n";
+
+// Format money - British Pound
+$formatted = MoneyFormatter::formatPound(1234.56);
+echo "Money formatting (GBP): " . $formatted . "\n";
 
 // Generate unique ID
 $id = IDGenerator::generateUniqueId(8);

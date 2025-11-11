@@ -172,9 +172,33 @@ use IGamingLib\Utils\MoneyFormatter;
 use IGamingLib\Utils\IDGenerator;
 use IGamingLib\Utils\BrazilianValidator;
 
-// Format money
-$formatted = MoneyFormatter::format(1234.56);
-// Returns: "R$ 1.234,56" (Brazilian format)
+// Format money - Brazilian Real
+$formatted = MoneyFormatter::format(1234.56, 2, 'pt_BR');
+// Returns: "R$ 1.234,56"
+
+// Format money - US Dollar
+$formatted = MoneyFormatter::formatDollar(1234.56);
+// Returns: "$1,234.56"
+
+// Format money - Euro
+$formatted = MoneyFormatter::formatEuro(1234.56);
+// Returns: "€1.234,56"
+
+// Format money - British Pound
+$formatted = MoneyFormatter::formatPound(1234.56);
+// Returns: "£1,234.56"
+
+// Format money - Indian Rupee
+$formatted = MoneyFormatter::formatRupee(1234.56);
+// Returns: "₹1,234.56"
+
+// Format money - Chinese Yuan
+$formatted = MoneyFormatter::formatYuan(1234.56);
+// Returns: "¥1,234.56"
+
+// Format money - South Korean Won
+$formatted = MoneyFormatter::formatWon(1234.56);
+// Returns: "₩1,235" (no decimals)
 
 // Generate unique ID
 $id = IDGenerator::generateUniqueId(8);
