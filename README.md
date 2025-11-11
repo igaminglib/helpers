@@ -24,11 +24,11 @@ Add the repository to your project's `composer.json`:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/your-username/igaming-lib"
+            "url": "https://github.com/igaminglib/helpers"
         }
     ],
     "require": {
-        "your-vendor/igaming-lib": "dev-main"
+        "igaminglib/helpers": "dev-main"
     }
 }
 ```
@@ -40,12 +40,11 @@ composer update
 
 Or install directly:
 ```bash
-composer require your-vendor/igaming-lib:dev-main --repository '{"type":"vcs","url":"https://github.com/your-username/igaming-lib"}'
+composer require igaminglib/helpers:dev-main --repository '{"type":"vcs","url":"https://github.com/igaminglib/helpers"}'
 ```
 
 **Important:** 
-- Replace `your-username` with your GitHub username
-- Replace `your-vendor` with your desired vendor name (must match the `name` in this library's `composer.json`)
+- The vendor name `igaminglib/helpers` must match the `name` field in this library's `composer.json`
 - Use `dev-main` for the main branch, or specify a tag like `v1.0.0`
 
 For detailed installation instructions, see [INSTALLATION.md](INSTALLATION.md).

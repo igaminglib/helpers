@@ -11,18 +11,17 @@ Add the repository configuration to your project's `composer.json`:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/your-username/igaming-lib"
+            "url": "https://github.com/igaminglib/helpers"
         }
     ],
     "require": {
-        "your-vendor/igaming-lib": "dev-main"
+        "igaminglib/helpers": "dev-main"
     }
 }
 ```
 
 **Important:** 
-- Replace `your-username` with your actual GitHub username
-- Replace `your-vendor` with your desired vendor name (e.g., `ancos`, `mycompany`)
+- The vendor name `igaminglib/helpers` must match the `name` field in the library's `composer.json`
 - Use `dev-main` for the main branch, or `dev-develop` for develop branch
 
 Then run:
@@ -32,7 +31,7 @@ composer update
 
 Or install directly:
 ```bash
-composer require your-vendor/igaming-lib:dev-main
+composer require igaminglib/helpers:dev-main
 ```
 
 ## Method 2: Using composer require with repository flag
@@ -40,7 +39,7 @@ composer require your-vendor/igaming-lib:dev-main
 You can also add the repository inline:
 
 ```bash
-composer require your-vendor/igaming-lib:dev-main --repository '{"type":"vcs","url":"https://github.com/your-username/igaming-lib"}'
+composer require igaminglib/helpers:dev-main --repository '{"type":"vcs","url":"https://github.com/igaminglib/helpers"}'
 ```
 
 ## Method 3: Using specific branch or tag
@@ -52,11 +51,11 @@ If you want to use a specific branch or tag:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/your-username/igaming-lib"
+            "url": "https://github.com/igaminglib/helpers"
         }
     ],
     "require": {
-        "your-vendor/igaming-lib": "dev-feature-branch"
+        "igaminglib/helpers": "dev-feature-branch"
     }
 }
 ```
@@ -65,7 +64,7 @@ Or for a specific tag:
 ```json
 {
     "require": {
-        "your-vendor/igaming-lib": "v1.0.0"
+        "igaminglib/helpers": "v1.0.0"
     }
 }
 ```
@@ -79,11 +78,11 @@ If you have SSH access to the repository:
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:your-username/igaming-lib.git"
+            "url": "git@github.com:igaminglib/helpers.git"
         }
     ],
     "require": {
-        "your-vendor/igaming-lib": "dev-main"
+        "igaminglib/helpers": "dev-main"
     }
 }
 ```
@@ -120,12 +119,12 @@ composer config github-oauth.github.com YOUR_GITHUB_TOKEN
 To update to the latest version:
 
 ```bash
-composer update your-vendor/igaming-lib
+composer update igaminglib/helpers
 ```
 
 Or to update to a specific branch:
 ```bash
-composer require your-vendor/igaming-lib:dev-main
+composer require igaminglib/helpers:dev-main
 ```
 
 ## Example: Complete composer.json
@@ -139,12 +138,12 @@ Here's a complete example for a Laravel project:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/your-username/igaming-lib"
+            "url": "https://github.com/igaminglib/helpers"
         }
     ],
     "require": {
         "php": "^8.2",
-        "your-vendor/igaming-lib": "dev-main",
+        "igaminglib/helpers": "dev-main",
         "laravel/framework": "^12.0"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "your-vendor/igaming-lib",
+    "name": "igaminglib/helpers",
     "description": "Framework-agnostic PHP library for common iGaming functionalities (RTP, Rollover, Validations, etc)",
     "type": "library",
     "keywords": [
